@@ -1,2 +1,2 @@
 -- Purpose: Creates main warehouse database
-CREATE DATABASE ECOMMERCE_DWH;
+CREATE DATABASE IF NOT EXISTS ECOMMERCE_DWH;
