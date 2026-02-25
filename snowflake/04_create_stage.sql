@@ -1,5 +1,5 @@
 -- using correct schema context
-
+USE DATABASE ECOMMERCE_DWH;
 USE SCHEMA RAW;
 
 -- creating internal stage
