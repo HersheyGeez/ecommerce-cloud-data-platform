@@ -1,0 +1,18 @@
+# Virtual Environment
+dbt_venv/
+
+# VS Code
+.vscode/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# dbt
+target/
+logs/
+dbt_packages/
+profiles.yml
+
