@@ -1,3 +1,5 @@
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 # 📦 Ecommerce Cloud Data Platform
 
 A cloud-native data warehouse project built using Snowflake, designed with a layered architecture and production-oriented ingestion strategy.
