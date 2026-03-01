@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: RAW
+    description: "Defining the source tables"
+    database: ECOMMERCE_DWH
+    schema: RAW
+    tables:
+      - name: category_name_translation_raw
+      - name: customers_raw
+      - name: geolocation_raw
+      - name: orders_raw
+      - name: order_items_raw
+      - name: order_payments_raw
+      - name: order_reviews_raw
+      - name: products_raw
+      - name: sellers_raw

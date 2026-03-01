@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: customers_stg
+    description: "Cleaned and standardized customers data from RAW layer"
+    columns:
+      - name: customer_id
+        description: "Primary key of customers table"
+        tests:
+          - unique
+          - not_null
+        
+      - name: customer_unique_id
+        description: "Business identifier of customer"
+        tests:
+          - not_null
+        
+      - name: zip_code_prefix
+        description: "Customer zip code prefix"
+
+      - name: city
+        description: "Customer city (lowercase standardization)"
+
+      - name: state
+        description: "Customer state (uppercase standardization)"
