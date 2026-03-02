@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: order_items_stg
+    description: "Staging model for order line items. Enforces composite grain (1 row per order_id and order_item_id), preserves transactional measures, and validates referential integrity with orders."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - order_id
+            - order_item_id
+    columns:
+      - name: order_id
+        description: "Identifier of the order to which this line item belongs. Foreign key referencing orders_stg."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('orders_stg')
+                field: order_id
+    
+      - name: order_item_id
+        description: "Sequential identifier of the item within an order. Unique only in combination with order_id."
+        tests:
+          - not_null
+    
+      - name: product_id
+        description: "Identifier of the product included in the order line item."
+        tests:
+          - not_null
+    
+      - name: seller_id
+        description: "Identifier of the seller fulfilling this order line item."
+        tests:
+          - not_null
+    
+      - name: shipping_limit_ts
+        description: "Timestamp by which the seller must ship the order item."
+        tests:
+          - not_null
+    
+      - name: price
+        description: "Monetary value of the product for this order line item. Stored as NUMBER(10,2)."
+        tests:
+          - not_null
+    
+      - name: freight_value
+        description: "Shipping cost associated with this order line item. Stored as NUMBER(10,2)."
+        tests:
+          - not_null
