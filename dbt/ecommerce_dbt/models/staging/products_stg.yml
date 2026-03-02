@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: products_stg
+    description: "Staging model for products. Enforces grain (1 row per product_id) and standardizes product metadata attributes from the RAW layer."
+
+    columns:
+      - name: product_id
+        description: "Unique identifier for each product. Primary key of the products staging model."
+        tests:
+          - unique
+          - not_null
+    
+      - name: category_name
+        description: "Seller-defined product category. May be null if not provided."
+
+      - name: name_length
+        description: "Character length of the product name as provided in the source system."
+    
+      - name: description_length
+        description: "Character length of the product description as provided in the source system."
+    
+      - name: photos_qty
+        description: "Number of photos associated with the product listing. Can be zero if no photos are provided."
+
+      - name: weight_g
+        description: "Weight of the product in grams. May be null if not specified by the seller."
+    
+      - name: length_cm
+        description: "Product length in centimeters. May be null if not specified."
+    
+      - name: height_cm
+        description: "Product height in centimeters. May be null if not specified."
+
+      - name: width_cm
+        description: "Product width in centimeters. May be null if not specified."
