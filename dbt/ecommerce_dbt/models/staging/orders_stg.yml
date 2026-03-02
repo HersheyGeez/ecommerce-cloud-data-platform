@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: orders_stg
+    description: "Staging model for orders. Enforces grain (1 row per order_id), standardizes timestamps and status values, and validates referential integrity with customers."
+    columns:
+      - name: order_id
+        description: "Unique identifier for each order. Primary key of the orders staging model."
+        tests:
+          - not_null
+          - unique
+    
+      - name: customer_id
+        description: "Identifier of the customer who placed the order. Foreign key referencing customers_stg."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('customers_stg')
+              field: customer_id
+    
+      - name: order_status
+        description: "Lifecycle status of the order (e.g., created, approved, shipped, delivered, canceled). Domain enforced via accepted_values test."
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['canceled', 'approved', 'created', 'shipped', 'invoiced', 'processing', 'unavailable', 'delivered']
+    
+      - name: order_purchase_ts
+        description: "Timestamp when the order was placed by the customer."
+        tests:
+          - not_null
+    
+      - name: order_approved_ts
+        description: "Timestamp when the order payment was approved. May be null for unapproved or canceled orders."
+    
+      - name: order_delivered_carrier_ts
+        description: "Timestamp when the order was handed over to the carrier. May be null for canceled or unshipped orders."
+
+      - name: order_delivered_customer_ts
+        description: "Timestamp when the order was delivered to the customer. May be null if not yet delivered."
+    
+      - name: estimated_delivery_dt
+        description: "Estimated delivery date promised to the customer at purchase time."
