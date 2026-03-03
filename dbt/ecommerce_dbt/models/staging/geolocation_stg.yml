@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: geolocation_stg
+    description: "Staging model for geolocation data. Preserves raw observation-level grain and standardizes location attributes for downstream geographic modeling."
+
+    columns:
+      - name: zip_code_prefix
+        description: "Five-digit postal code prefix associated with the geolocation record. Standardized to preserve leading zeros."
+      
+      - name: latitude
+        description: "Latitude coordinate of the geolocation observation."
+      
+      - name: longitude
+        description: "Longitude coordinate of the geolocation observation."
+      
+      - name: city
+        description: "City associated with the geolocation record. Standardized to lowercase."
+      
+      - name: state
+        description: "Two-letter state code associated with the geolocation record. Standardized to uppercase."
