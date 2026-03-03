@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: category_translation_stg
+    description: "Staging model for product category translations. Enforces grain (1 row per category_name) and standardizes category mappings from the RAW layer."
+    columns:
+      - name: category_name
+        description: "Original product category name as defined in the source system. Primary key of the translation lookup table."
+        tests:
+          - unique
+          - not_null
+    
+      - name: category_name_english
+        description: "English translation of the product category name."
