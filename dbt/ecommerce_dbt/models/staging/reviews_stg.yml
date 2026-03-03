@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: reviews_stg
+    description: "Staging model for order reviews. Enforces composite grain (1 row per review_id and order_id) and standardizes review attributes from the RAW layer."
+    tests: 
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - review_id
+            - order_id
+    
+    columns:
+      - name: review_id
+        description: "Identifier of the review record."
+        tests:
+          - not_null
+      
+      - name: order_id
+        description: "Identifier of the order associated with the review."
+        tests:
+          - not_null
+      
+      - name: score
+        description: "Numeric rating provided by the customer. Expected range: 1 to 5."
+        tests:
+          - not_null
+          - accepted_values:
+              arguments: 
+                values: [1,2,3,4,5]
+      
+      - name: comment_title
+        description: "Short title provided by the customer in the review."
+      
+      - name: comment_message
+        description: "Detailed review message provided by the customer."
+      
+      - name: review_creation_ts
+        description: "Timestamp when the review was created."
+        tests:
+          - not_null
+      
+      - name: review_answer_ts
+        description: "Timestamp when the review was answered by the seller. May be null if no response was given."
