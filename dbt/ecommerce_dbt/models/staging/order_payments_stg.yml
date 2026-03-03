@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: order_payments_stg
+    description: "Staging model for order payments. Enforces composite grain (1 row per order_id and payment_sequential) and standardizes payment attributes from the RAW layer."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - order_id
+              - payment_sequential
+    
+    columns:
+      - name: order_id
+        description: "Identifier of the order associated with the payment."
+        tests:
+          - not_null
+      
+      - name: payment_sequential
+        description: "Sequential identifier of the payment within an order. Unique only in combination with order_id."
+        tests:
+          - not_null
+      
+      - name: payment_type
+        description: "Method used to complete the payment (e.g., credit_card, debit_card, boleto, voucher). Controlled domain."
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['debit_card', 'not_defined', 'credit_card', 'boleto', 'voucher']
+      
+      - name: installment
+        description: "Number of installments used for the payment transaction."
+        tests:
+          - not_null
+      
+      - name: payment_value
+        description: "Monetary value of the payment transaction. Stored with fixed precision in the RAW layer."
+
