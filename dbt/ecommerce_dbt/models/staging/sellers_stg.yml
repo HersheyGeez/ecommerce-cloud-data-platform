@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: sellers_stg
+    description: "Staging model for sellers. Enforces grain (1 row per seller_id) and standardizes seller location attributes from the RAW layer."
+    columns:
+      - name: seller_id
+        description: "Unique identifier for each seller. Primary key of the sellers staging model."
+        tests:
+          - unique
+          - not_null
+    
+      - name: zip_code_prefix
+        description: "Seller postal code prefix. Standardized to preserve leading zeros."
+    
+      - name: city
+        description: "City where the seller is located. Standardized to lowercase."
+    
+      - name: state
+        description: "Two-letter state code representing the seller’s state. Standardized to uppercase."
