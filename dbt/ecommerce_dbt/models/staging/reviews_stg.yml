@@ -19,6 +19,9 @@ models:
         description: "Identifier of the order associated with the review."
         tests:
           - not_null
+          - relationships:
+              to: ref('orders_stg')
+              field: order_id
       
       - name: score
         description: "Numeric rating provided by the customer. Expected range: 1 to 5."

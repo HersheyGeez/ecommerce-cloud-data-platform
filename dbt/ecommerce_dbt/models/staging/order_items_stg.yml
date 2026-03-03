@@ -14,9 +14,8 @@ models:
         tests:
           - not_null
           - relationships:
-              arguments:
-                to: ref('orders_stg')
-                field: order_id
+              to: ref('orders_stg')
+              field: order_id
     
       - name: order_item_id
         description: "Sequential identifier of the item within an order. Unique only in combination with order_id."
@@ -27,12 +26,18 @@ models:
         description: "Identifier of the product included in the order line item."
         tests:
           - not_null
+          - relationships:
+              to: ref('products_stg')
+              field: product_id
     
       - name: seller_id
         description: "Identifier of the seller fulfilling this order line item."
         tests:
           - not_null
-    
+          - relationships:
+              to: ref('sellers_stg')
+              field: seller_id
+  
       - name: shipping_limit_ts
         description: "Timestamp by which the seller must ship the order item."
         tests:
