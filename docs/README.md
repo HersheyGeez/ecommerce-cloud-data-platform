@@ -27,7 +27,7 @@ The system follows a structured ELT flow:
 - Staging Layer (dbt): Data cleaning & standardization
 - Marts Layer (dbt): Fact and Dimension modeling
 
-![Data Flow Diagram](data-flow-diagram-v1.png)
+![Data Flow Diagram](data-flow-diagram-v2.png)
 
 ## Key Design Decisions
 
