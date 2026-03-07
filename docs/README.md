@@ -37,6 +37,30 @@ The layered structure ensures modular transformations, auditability, and clear s
 
 ---
 
+## dbt Model Lineage
+
+The transformation layer is implemented using **dbt**, which defines dependencies between staging models, dimension tables, and fact tables.
+
+This ensures that models are built in the correct order and that transformations remain modular and maintainable.
+
+### Full Project Lineage
+
+The following graph illustrates the full dependency structure of the transformation layer from RAW sources to STAGING models and finally to MARTS (dimensions and facts).
+
+![dbt Lineage Graph](dbt_full_lineage.png)
+
+---
+
+### Example: Fact Table Lineage
+
+The `fact_order_items` model demonstrates how fact tables are constructed by combining multiple dimension tables and staging models.
+
+It integrates product, seller, customer, date, and order information into a single analytical fact table.
+
+![Fact Order Items Lineage](dbt_fact_order_items_lineage.png)
+
+---
+
 ## Current Implementation Scope
 
 The platform currently includes:
