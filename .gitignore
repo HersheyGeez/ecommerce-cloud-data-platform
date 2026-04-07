@@ -1,3 +1,12 @@
+# Airflow
+airflow/logs/
+airflow/data/
+airflow/config/
+airflow/plugins/__pycache__/
+airflow_venv/
+.env
+
+
 # Virtual Environment
 dbt_venv/
 
