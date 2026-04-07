@@ -2,9 +2,9 @@
 
 # 📦 Ecommerce Cloud Data Platform
 
-A cloud-native data platform built using **Snowflake** and **dbt**, designed with a layered warehouse architecture and production-oriented ELT strategy.
+A cloud-native data platform built using **Snowflake, dbt, and Apache Airflow**, designed with a layered warehouse architecture and production-oriented ELT strategy.
 
-This project demonstrates how an ecommerce dataset can be ingested, transformed, and modeled inside a cloud data warehouse using scalable and maintainable data engineering practices.
+This project demonstrates how an ecommerce dataset can be ingested, transformed, modeled, and orchestrated inside a cloud data warehouse using scalable and maintainable data engineering practices.
 
 For detailed technical documentation, architecture diagrams, data flow diagrams, and model lineage, please refer to:
 
@@ -20,13 +20,14 @@ The goal of this project is to design and incrementally build a modern cloud dat
 - Layered warehouse architecture (RAW → STAGING → MARTS)  
 - Transformation using dbt  
 - Dimensional modeling for analytics  
+- Workflow orchestration using Airflow  
 - Analytics-ready data foundations  
 
 The project follows an evolution-based development approach where each architectural layer is implemented and documented progressively.
 
 ---
 
-## 🏗 Current Implementation Scope (Version 3)
+## 🏗 Current Implementation Scope (Version 4)
 
 The platform currently includes:
 
@@ -37,9 +38,9 @@ The platform currently includes:
 - dbt-based **staging layer transformations**  
 - dbt-based **marts layer implementing dimensional models**  
 - Fact and dimension tables for analytics workloads  
-- Model testing and structured dbt project organization  
-
-Future versions will introduce orchestration and pipeline automation.
+- **Apache Airflow DAG for pipeline orchestration**  
+- End-to-end pipeline execution (ingestion → transformation → marts)  
+- Model testing and structured project organization  
 
 ---
 
@@ -51,7 +52,8 @@ The system follows an **ELT architecture**:
 2. Snowflake Internal Stage  
 3. **RAW layer** (source-aligned ingestion tables)  
 4. **STAGING layer** (data cleaning and standardization via dbt)  
-5. **MARTS layer** (dimensional modeling with facts and dimensions)
+5. **MARTS layer** (dimensional modeling with facts and dimensions)  
+6. **Orchestration layer** (Airflow DAG managing pipeline execution)
 
 This layered design ensures traceability, modular transformations, and scalable analytics modeling.
 
@@ -62,15 +64,10 @@ This layered design ensures traceability, modular transformations, and scalable 
 - **Snowflake** – Cloud Data Warehouse  
 - **SQL** – Warehouse modeling & ingestion  
 - **dbt** – Transformation and dimensional modeling  
+- **Apache Airflow** – Workflow orchestration  
+- **Python** – DAG development  
 - **CSV Batch Files** – Source data  
 - **Draw.io** – Architecture and data flow diagrams  
-
-Planned:
-
-- **Apache Airflow** – Workflow orchestration  
-- Incremental loading strategy  
-- Data quality automation  
-- CI/CD for dbt workflows  
 
 ---
 
@@ -83,7 +80,8 @@ This project emphasizes:
 - Source-aligned RAW schema for traceability  
 - Modular transformation design using dbt  
 - Dimensional modeling for analytics consumption  
-- Incremental system development with evolving architecture documentation  
+- Workflow orchestration for automation and reliability  
+- Incremental system development with evolving architecture  
 
 ---
 
