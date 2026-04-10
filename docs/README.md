@@ -33,7 +33,7 @@ The system follows a structured ELT pipeline:
 
 The layered structure ensures modular transformations, auditability, and clear separation between ingestion, transformation, and analytics modeling.
 
-![Data Flow Diagram](data-flow-diagram-v3.png)
+![Data Flow Diagram](data-flow-diagram-v4.jpg)
 
 ---
 
