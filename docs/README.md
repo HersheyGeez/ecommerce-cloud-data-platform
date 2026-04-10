@@ -17,7 +17,7 @@ The platform follows a layered ELT architecture:
 5. Workflow orchestration using Airflow (planned)  
 6. Consumption via BI / Analytics layer (future scope)
 
-![High Level Architecture](final-high-level-architecture.png)
+![High Level Architecture](final-high-level-architecture.jpg)
 
 ---
 
